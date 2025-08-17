@@ -1,0 +1,28 @@
+body {
+  background-image: url("background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+div {
+  background-color: black;
+  width: 400px;
+  height: 300px;
+  border: 5px solid rgb(215, 208, 10);
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 15px;
+  margin-top: 350px;
+  margin-left: 80px;
+}
+h3 {
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+p {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  text-align: justify;
+}
