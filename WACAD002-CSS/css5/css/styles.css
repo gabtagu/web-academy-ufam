@@ -83,3 +83,17 @@ main {
   color: #fff;
   grid-column: 2/6;
 }
+
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    grid-column: auto;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
