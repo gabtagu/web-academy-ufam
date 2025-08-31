@@ -1,0 +1,47 @@
+<body>
+  <h1>Listas</h1>
+
+  <p id="lista-titulo" name="lista">Minhas listas:</p>
+
+  <ul class="lista-itens-1">
+    <li id="one" class="hot">item a</li>
+    <li id="two" class="hot">item b</li>
+    <li id="three" class="hot">item c</li>
+    <li id="four">item d</li>
+  </ul>
+
+  <ul class="lista-itens-2">
+    <li id="one" class="hot">item a</li>
+    <li id="two" class="hot">item b</li>
+    <li id="three" class="hot">item c</li>
+    <li id="four">item d</li>
+  </ul>
+
+  <ul class="lista-itens-3">
+    <li id="one" class="hot">item a</li>
+    <li id="two" class="hot">item b</li>
+    <li id="three" class="hot">item c</li>
+    <li id="four">item d</li>
+  </ul>
+
+  <ul class="lista-itens-4">
+    <li id="one" class="hot">item a</li>
+    <li id="two" class="hot">item b</li>
+    <li id="three" class="hot">item c</li>
+    <li id="four">item d</li>
+  </ul>
+
+  <script>
+    //Percorra todos os itens da lista-itens-2 e altere o estilo de cor do texto para red;
+    const list2 = document.querySelectorAll(".lista-itens-2 li"); //pegando todos os itens da lista 2
+    list2.forEach((item) => (item.style.color = "red")); //percorrendo todos os itens e alterando a cor do texto para red
+
+    //Percorra todos os itens da lista-itens-2 e substitua a classe "hot" pela classe "cold".
+    list2.forEach((item) => {
+      //verificando se o item possui a classe hot
+      if (item.classList.contains("hot")) {
+        item.classList.replace("hot", "cold"); //substituindo a classe hot pela classe cold
+      }
+    });
+  </script>
+</body>
