@@ -2,9 +2,13 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+require("dotenv").config();
 
 // recebe um diretório como argumento
 const dir = process.argv[2];
+
+// verifica se o diretório foi fornecido
+const PORT = process.env.PORT || 3333;
 
 const server = http.createServer((req, res) => {
   fs.readdir(dir, (err, files) => {
@@ -27,6 +31,6 @@ const server = http.createServer((req, res) => {
 });
 
 // inicia o servidor na porta 3333
-server.listen(3333, () => {
-  console.log("Servidor rodando em http://localhost:3333");
+server.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
