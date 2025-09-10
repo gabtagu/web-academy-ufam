@@ -34,3 +34,6 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+const env = process.env.NODE_ENV || "development";
+require("dotenv").config({ path: `.env.${env}` });
