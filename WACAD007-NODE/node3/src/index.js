@@ -25,7 +25,7 @@ const server = http.createServer(async (req, res) => {
 
   const lorem = gerarLorem(p);
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-  res.write(template(`Valor de p: ${p} <br> ${lorem}`));
+  res.write(template(`<p>Valor de p:  ${p} </p> <br> ${lorem}`));
   res.end();
 });
 
