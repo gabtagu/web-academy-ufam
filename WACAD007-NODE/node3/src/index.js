@@ -2,6 +2,7 @@ import fsPromise from "fs/promises";
 import http from "http";
 import dotenv from "dotenv";
 import template from "./lib/template.js";
+import gerarLorem from "./lib/loren.js";
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
@@ -10,7 +11,8 @@ const PORT = process.env.PORT ?? 5000;
 const server = http.createServer(async (req, res) => {
   let p = 0;
   if (req.url.includes("p=")) {
-    p = req.url.split("p=")[1];
+    const valor = parseInt(req.url.split("p=")[1]);
+    if (!isNaN(valor)) p = valor;
   }
 
   if (req.url === "/public/style.css") {
@@ -21,11 +23,12 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  const lorem = gerarLorem(p);
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-  res.write(template(`Valor de p: ${p}`));
+  res.write(template(`Valor de p: ${p} <br> ${lorem}`));
   res.end();
 });
 
 server.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Servidor rodando na porta http://localhost:${PORT}`);
 });
