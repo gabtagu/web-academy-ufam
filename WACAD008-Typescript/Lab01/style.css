@@ -1,13 +1,13 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: rgb(195, 218, 209);
+  background-color: rgb(208, 232, 223);
   margin: 0;
   padding: 20px;
 }
 
 .navbar {
   margin-bottom: 20px;
-  background-color: rgb(233, 246, 241);
+  background-color: rgb(193, 234, 219);
 }
 
 .container {
