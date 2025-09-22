@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "es2015", "es2015.iterable"],
+    "module": "commonjs",
+    "strict": true
+  }
+}
