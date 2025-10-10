@@ -1,30 +1,18 @@
 import { Router } from 'express';
+import controller from '../controller/main';
+
 const router = Router();
 
-router.get('/', (req, res) => {
-  res.send('Hello world! Esta é a página Inicial');
-});
-router.get('/about', (req, res) => {
-  res.send('About page');
-});
-router.get('/page', (req, res) => {
-  res.send(
-    '<DOCTYPE html><html><head><title>Minha Página</title></head><body><h1>Conteúdo da minha página</h1></body></html>',
-  );
-});
-router.get('/hb1', (req, res) => {
-  res.render('hb1', {
-    layout: false,
-  });
-});
-router.get('/hb2', (req, res) => {
-  res.render('hb2', {
-    layout: false,
-  });
-});
-router.get('/hb3', (req, res) => {
-  res.render('hb3', {
-    layout: false,
-  });
-});
+router.get('/', controller.index);
+
+router.get('/about', controller.about);
+
+router.get('/hb1', controller.hb1);
+
+router.get('/hb2', controller.hb2);
+
+router.get('/hb3', controller.hb3);
+
+router.get('/hb4', controller.hb4);
+
 export default router;
