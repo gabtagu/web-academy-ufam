@@ -9,11 +9,11 @@ const about = (req: Request, res: Response) => {
 };
 
 const hb1 = (req: Request, res: Response) => {
-  res.render('hb1', {});
+  res.render('main/hb1', {});
 };
 
 const hb2 = (req: Request, res: Response) => {
-  res.render('hb2', {});
+  res.render('main/hb2', {});
 };
 const hb3 = (req: Request, res: Response) => {
   const profs = [
@@ -22,7 +22,7 @@ const hb3 = (req: Request, res: Response) => {
     { name: 'Edleno Moura', sala: 1236 },
     { name: 'Elaine Harada', sala: 1231 },
   ];
-  res.render('hb3', {
+  res.render('main/hb3', {
     profs,
   });
 };
@@ -37,7 +37,7 @@ const hb4 = (req: Request, res: Response) => {
     { name: 'Docker', type: 'Virtualization', poweredByNodejs: false },
     { name: 'Sequelize', type: 'ORM tool', poweredByNodejs: true },
   ];
-  res.render('hb4', {
+  res.render('main/hb4', {
     technologies,
   });
 };

@@ -4,7 +4,9 @@ import dotenv from 'dotenv';
 import logger from './middlewares/logger';
 import { engine } from 'express-handlebars';
 import router from './router/router';
+import productRouter from './router/products';
 import helpers from './views/helpers/helpers';
+import loremRouter from './router/lorem';
 
 dotenv.config();
 validateEnv();
@@ -12,8 +14,8 @@ validateEnv();
 const app = express();
 const PORT = process.env.PORT || 3333;
 const publicPath = '${process.cwd()}/public';
+app.use(express.urlencoded({ extended: false }));
 
-app.use(router);
 app.engine(
   'handlebars',
   engine({
@@ -21,6 +23,10 @@ app.engine(
     layoutsDir: `${__dirname}/views/layout`,
   }),
 );
+
+app.use(router);
+app.use(productRouter);
+app.use(loremRouter);
 
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/views`);
