@@ -23,3 +23,19 @@ export function createProduct(
     data: createProduct,
   });
 }
+
+export function updateProduct(
+  id: string,
+  data: Partial<CreateProductDTO>
+): Promise<Product> {
+  return prisma.product.update({
+    where: { id: id },
+    data: data,
+  });
+}
+
+export function deleteProduct(id: string): Promise<Product> {
+  return prisma.product.delete({
+    where: { id: id },
+  });
+}
