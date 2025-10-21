@@ -10,7 +10,7 @@ RUN sed -i 's/listen 80 default_server;/listen 7000 default_server;/' /etc/nginx
 # Expõe a porta 7000
 EXPOSE 7000
 
-# Comando para manter o Nginx rodando em foreground (necessário no Docker)
+# Comando para manter o Nginx rodando em foreground
 CMD ["nginx", "-g", "daemon off;"]
 
 # Comando de build:
