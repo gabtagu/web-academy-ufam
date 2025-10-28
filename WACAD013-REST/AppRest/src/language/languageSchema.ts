@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { LanguageTypes } from "./language.constants";
+import { LanguageTypes } from "./languageConstants";
 
 const languageSchema = Joi.object({
   lang: Joi.string()

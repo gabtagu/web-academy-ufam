@@ -1,4 +1,7 @@
-import { Users } from "@prisma/client";
+import { User } from "@prisma/client";
 
-export type CreateUserDTO = Pick<Users, "name" | "email" | "password">;
+export type CreateUserDTO = Pick<
+  User,
+  "name" | "email" | "password" | "userTypeId"
+>;
 export type UpdateUserDTO = Partial<CreateUserDTO>;

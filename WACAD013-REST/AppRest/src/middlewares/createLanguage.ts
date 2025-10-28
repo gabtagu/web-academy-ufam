@@ -1,5 +1,5 @@
 import cookieParser from "cookie-parser";
-import { LanguageTypes } from "../language/language.constants";
+import { LanguageTypes } from "../language/languageConstants";
 import { NextFunction } from "express";
 import { Request, Response } from "express";
 
@@ -11,3 +11,5 @@ function createLanguage() {
     next();
   };
 }
+
+export default createLanguage;

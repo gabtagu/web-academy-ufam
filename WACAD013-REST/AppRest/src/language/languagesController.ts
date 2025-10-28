@@ -1,8 +1,13 @@
 import { Request, Response } from "express";
+import { ReasonPhrases } from "http-status-codes";
 
-const changeCookieValue = (req: Request, res: Response) => {
+const changeLanguage = (req: Request, res: Response) => {
   const { lang } = req.body;
   res.cookie("lang", lang).json(lang);
 };
 
-export default changeCookieValue;
+const deleteLanguage = (req: Request, res: Response) => {
+  res.clearCookie("lang").json(ReasonPhrases.OK);
+};
+
+export default { changeLanguage, deleteLanguage };
