@@ -21,6 +21,8 @@ model Product {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  PurchaseItem PurchaseItem[]
+
   @@index([name])
 }
 
@@ -33,9 +35,33 @@ model User {
  userType UserType @relation(fields: [userTypeId], references: [id])
  createdAt DateTime @default(now())
  updatedAt DateTime @updatedAt
+
+ Purchase Purchase[]
 }
 model UserType {
  id String @id @default(uuid()) @db.Char(36)
  label String @db.VarChar(10)
+
  User User[]
+}
+model Purchase{
+  id String @id @default(uuid()) @db.Char(36)
+  userId String @db.Char(36) 
+  user User @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  PurchaseItem PurchaseItem[]
+  
+}
+
+model PurchaseItem {
+  id String @id @default(uuid()) @db.Char(36)
+  purchaseId String @db.Char(36)
+  purchase Purchase @relation(fields: [purchaseId], references: [id])
+  productId String @db.Char(36)
+  product Product @relation(fields: [productId], references: [id])
+  quantity Int @db.Int()
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
 }

@@ -12,6 +12,23 @@ import {
 } from "./products.service";
 
 const index = async (req: Request, res: Response) => {
+  /*
+    #swagger.sumary = "Lista todos os produtos"
+
+    #swagger.response[200] = {
+      description: "Retorna um array de produtos"
+      schema: {
+        type: "array",
+        itens: {
+          $ref: '#/definitions/Product'
+        }
+      }
+    }
+    #swagger.response[500] = {
+      description: "Erro no servidor"
+    }
+    
+  */
   try {
     const products = await getAllProducts();
     return res.json(products);
@@ -21,6 +38,26 @@ const index = async (req: Request, res: Response) => {
 };
 
 const read = async (req: Request, res: Response) => {
+  /*
+    #swagger.sumary = "Lê um produto do bd"
+    #swagger.parameters['id'] = {
+      description: "O id de um produto cadastrado"
+    }
+
+    #swagger.response[200] = {
+      description: "retorno do produto"
+      schema: {$ref: '#/definitions/Product'}
+    }
+    
+    #swagger.response[400] = {
+      description: "O produto já existe"
+    }
+    
+    #swagger.response[500] = {
+      description: "Erro no servidor"
+    }
+
+  */
   try {
     const id = req.params.id as string;
     const product = await getProduct(id);
@@ -36,6 +73,25 @@ const read = async (req: Request, res: Response) => {
 };
 
 const create = async (req: Request, res: Response) => {
+  /*
+    #swagger.sumary = 'Criar um novo produto'
+    #swagger.parameters['body'] = {
+      in: 'body',
+      schema: {$ref: '#/definitions/CreateProductDTO'}
+    }
+    
+    #swagger.response[201] = {
+      description: "O produto foi criado com sucesso"
+      schema: {$ref: '#/definitions/Product'}
+    }
+    #swagger.response[409] = {
+      description: "O produto já existe"
+    }
+    #swagger.response[500] = {
+      description: "Erro no servidor"
+    }
+
+  */
   try {
     const product: CreateProductDTO = req.body;
 

@@ -6,6 +6,9 @@ import session from "express-session";
 import createLanguage from "./middlewares/createLanguage";
 import { v4 as uuidv4 } from "uuid";
 import validateEnv from "./utils/validateEnv";
+import swaggerUi from "swagger-ui-express";
+import swaggerFile from "./swagger-output.json";
+import createCart from "./middlewares/createCart";
 
 dotenv.config();
 validateEnv();
@@ -17,6 +20,8 @@ const server = express();
 server.use(express.json());
 server.use(cookieParser());
 server.use(createLanguage());
+server.use(createCart);
+server.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 server.use(
   session({
