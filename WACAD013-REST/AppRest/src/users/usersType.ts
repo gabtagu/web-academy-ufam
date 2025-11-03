@@ -5,3 +5,5 @@ export type CreateUserDTO = Pick<
   "name" | "email" | "password" | "userTypeId"
 >;
 export type UpdateUserDTO = Partial<CreateUserDTO>;
+// a omissão da senha é essencial para que ela não seja retornada em caso de acesso
+export type UserResponseDTO = Omit<User, "password">;

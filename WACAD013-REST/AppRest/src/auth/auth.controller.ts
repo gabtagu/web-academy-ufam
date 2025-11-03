@@ -44,7 +44,18 @@ const login = async (req: Request, res: Response) => {
   }
 };
 const logout = (req: Request, res: Response) => {
-  req.session.destroy();
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Erro ao destruir a sessão:", err);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        message: ReasonPhrases.INTERNAL_SERVER_ERROR,
+        detail: "Falha ao finalizar a sessão.",
+      });
+    }
+    res.clearCookie("connect.sid");
+
+    return res.status(StatusCodes.NO_CONTENT).send();
+  });
 };
 
 export default { signup, login, logout };

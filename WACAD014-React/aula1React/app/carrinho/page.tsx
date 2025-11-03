@@ -2,7 +2,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TabelaProdutos from "../components/TabelaProdutos/TabelaProdutos";
-import CardProdutosTotal from "../components/CardProdutoTotal/CardProdutosTotal";
+import ResumoCarrinho from "../components/ResumoCarrinho/ResumoCarrinho";
 
 export default function Carrinho() {
   return (
@@ -10,7 +10,7 @@ export default function Carrinho() {
       <main>
         <div className="container p-5">
           <TabelaProdutos />
-          <CardProdutosTotal />
+          <ResumoCarrinho />
         </div>
       </main>
     </>

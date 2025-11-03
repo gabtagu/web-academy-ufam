@@ -7,6 +7,6 @@ const router = Router();
 
 router.post("/signup", validateSchema(signupSchema), authController.signup);
 router.post("/login", validateSchema(loginSchema), authController.login);
-router.delete("/logout", authController.logout);
+router.post("/logout", authController.logout);
 
 export default router;

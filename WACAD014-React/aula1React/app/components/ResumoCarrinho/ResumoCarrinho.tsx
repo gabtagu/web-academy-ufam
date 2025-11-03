@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function CardProdutosTotal() {
+export default function ResumoCarrinho() {
   return (
     <div className="card mb-4">
       <div className="card-body">

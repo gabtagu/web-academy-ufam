@@ -20,7 +20,7 @@ const server = express();
 server.use(express.json());
 server.use(cookieParser());
 server.use(createLanguage());
-server.use(createCart);
+//server.use(createCart);
 server.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 server.use(

@@ -5,7 +5,7 @@ import { Router } from "express";
 import languagesRouter from "../language/languagesRouter";
 import usersRouter from "../users/usersRouter";
 import authRouter from "../auth/auth.router";
-import purchaseItemRouter
+//import purchaseItemRouter from "../purchaseItem/purcahseItem.router";
 
 const router = Router();
 
