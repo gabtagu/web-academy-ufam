@@ -1,14 +1,14 @@
 type ProdutoFoto = {
-    titulo: string;
-    src:string
-}
+  titulo: string;
+  src: string;
+};
 
 export type Produto = {
-    id: string;
-    fotos: ProdutoFoto[]
-    nome: string
-    preco: number
-    descricao: string
-    vendido: 
-    usuario_id:
-}
+  id: string;
+  fotos: ProdutoFoto[];
+  nome: string;
+  preco: string;
+  descricao: string;
+  vendido: string;
+  usuario_id: string;
+};

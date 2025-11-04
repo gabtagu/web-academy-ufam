@@ -1,4 +1,6 @@
-export type itemCarrinhoType {
-    nome: string;
-    preco: 
-}
+export type ItemCarrinhoType = {
+  id: string;
+  nome: string;
+  preco: number;
+  quantidade: number;
+};
