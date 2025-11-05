@@ -19,10 +19,8 @@ const server = express();
 
 server.use(express.json());
 server.use(cookieParser());
-server.use(createLanguage());
-//server.use(createCart);
-server.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
+// 1. O middleware de sessão DEVE vir antes de qualquer outro que use req.session
 server.use(
   session({
     genid: () => uuidv4(),
@@ -31,6 +29,12 @@ server.use(
     saveUninitialized: true,
   })
 );
+
+// 2. Middlewares que dependem da sessão (createLanguage e createCart) vêm depois
+server.use(createLanguage());
+server.use(createCart());
+
+server.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 server.use(router);
 

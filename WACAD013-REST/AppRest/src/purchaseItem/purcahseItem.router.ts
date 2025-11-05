@@ -1,6 +1,13 @@
 import { Router } from "express";
-import { PurchaseItem } from "@prisma/client";
+import { add, list, checkout } from "./purchaseItem.controller";
+import { isAuth } from "../middlewares/isAuth";
 
 const router = Router();
 
-router.get("/", )
+router.get("/cart", isAuth, list);
+
+router.post("/cart", isAuth, add);
+
+router.post("/checkout", isAuth, checkout);
+
+export default router;

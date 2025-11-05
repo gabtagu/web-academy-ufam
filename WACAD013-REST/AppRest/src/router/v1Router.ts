@@ -1,11 +1,9 @@
-// associa as rotas de produtos ao roteador principal da API
-
 import productsRouter from "../resourcers/products/products.router";
 import { Router } from "express";
 import languagesRouter from "../language/languagesRouter";
 import usersRouter from "../users/usersRouter";
 import authRouter from "../auth/auth.router";
-//import purchaseItemRouter from "../purchaseItem/purcahseItem.router";
+import purchaseRouter from "../purchaseItem/purcahseItem.router";
 
 const router = Router();
 
@@ -28,6 +26,10 @@ router.use(
   "/auth",
   // #swagger.tags = ["auth"]
   authRouter
+);
+router.use(
+  "/purchase", // #swagger.tags = ["Purchase"]
+  purchaseRouter
 );
 
 export default router;
