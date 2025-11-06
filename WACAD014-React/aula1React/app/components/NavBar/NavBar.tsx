@@ -30,9 +30,14 @@ export default function NavBar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/carrinho">
+                <Link className="nav-link" href="/carrinho">
                   Carrinho
-                </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/favoritos">
+                  Favoritos
+                </Link>
               </li>
             </ul>
 
