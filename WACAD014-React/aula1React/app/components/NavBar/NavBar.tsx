@@ -1,9 +1,12 @@
-"use-client";
+"use client";
 import React from "react";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { usePathname } from "next/navigation";
 
 export default function NavBar() {
+  // Navbar condicional
+
   return (
     <div>
       <nav className="navbar navbar-expand-md bg-light border-bottom border-body sticky-top">

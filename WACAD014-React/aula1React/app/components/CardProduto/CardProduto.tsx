@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Produto } from "@/app/types/produtos";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,7 +14,7 @@ export default function CardProduto({
   produto,
   onAdicionarAoCarrinho,
 }: CardProdutoProps) {
-  const { mutate: favoritar, isPending: favoritando } = useFavoritarProduto();
+  const { favoritar, isPending: favoritando } = useFavoritarProduto();
   const [feedback, setFeedback] = React.useState<{
     type: "success" | "danger" | null;
     message: string | null;
@@ -87,7 +88,7 @@ export default function CardProduto({
               disabled={favoritando}
               title="Favoritar"
             >
-              ♥ Favoritar
+              Favoritar
             </button>
 
             <button

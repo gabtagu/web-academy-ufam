@@ -1,22 +1,19 @@
 "use client";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useQuery } from "@tanstack/react-query";
-import { getFavoritos } from "../services/favoritos";
-import { Produto } from "../types/produtos";
-import Image from "next/image";
+import { useListaFavoritos } from "../hooks/useFavoritos";
+
+import ListagemFavoritos from "../components/ListagemFavoritos/ListagemFavoritos";
 
 export default function Favoritos() {
   const {
-    data: favoritos,
-    isLoading,
+    favoritos,
+    isPending,
     isError,
-  } = useQuery({
-    queryKey: ["favoritos"],
-    queryFn: () => getFavoritos(),
-  });
+    refetchFavoritos: refetch,
+  } = useListaFavoritos();
 
-  if (isLoading) {
+  if (isPending) {
     return (
       <div className="container p-5">
         <h5>Carregando favoritos...</h5>
@@ -45,27 +42,12 @@ export default function Favoritos() {
   }
 
   return (
-    <div className="container p-5">
-      <h5 className="mb-4">Meus Favoritos</h5>
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
-        {favoritos.map((produto: Produto) => (
-          <div key={produto.id} className="col">
-            <div className="card shadow-sm h-100">
-              <Image
-                src={produto.fotos[0].src}
-                className="card-img-top"
-                alt={produto.nome}
-                width={300}
-                height={320}
-              />
-              <div className="card-body bg-light">
-                <h5 className="card-title">{produto.nome}</h5>
-                <p className="card-text text-secondary">R$ {produto.preco}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className="container p-3">
+      <h5 className="mb-3">Seus Produtos Favoritos</h5>
+      <ListagemFavoritos
+        itensFavoritos={favoritos}
+        refecthFavoritos={refetch}
+      />
     </div>
   );
 }

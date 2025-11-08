@@ -5,7 +5,7 @@ const apiProdutos = axios.create({
 });
 
 export const apiFavoritos = axios.create({
-  baseURL: "https://api.produtosfav.com/favoritos",
+  baseURL: "https://json-server-teste-react.vercel.app/",
 });
 
 //por algum motivo estava dando erro se não exportasse como default

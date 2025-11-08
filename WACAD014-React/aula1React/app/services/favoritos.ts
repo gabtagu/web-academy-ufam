@@ -1,14 +1,12 @@
-import axios from "axios";
 import { Produto } from "../types/produtos";
-
-const FAVORITOS_BASE = "http://localhost:3002";
+import { apiFavoritos } from "./api";
 
 export async function postFavorito(produto: Produto): Promise<Produto> {
-  const response = await axios.post(`${FAVORITOS_BASE}/favoritos`, produto);
+  const response = await apiFavoritos.post("/favoritos", produto);
   return response.data;
 }
 
 export async function getFavoritos(): Promise<Produto[]> {
-  const response = await axios.get(`${FAVORITOS_BASE}/favoritos`);
+  const response = await apiFavoritos.get("/favoritos");
   return response.data;
 }
