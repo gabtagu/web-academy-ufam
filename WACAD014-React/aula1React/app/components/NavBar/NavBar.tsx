@@ -5,8 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { usePathname } from "next/navigation";
 
 export default function NavBar() {
-  // Navbar condicional
-
+  const pathname = usePathname();
+  const noNavBar = ["/login", "/cadastro"];
+  if (noNavBar.includes(pathname)) {
+    return null;
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-md bg-light border-bottom border-body sticky-top">
