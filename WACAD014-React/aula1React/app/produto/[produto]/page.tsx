@@ -1,11 +1,32 @@
 "use client";
+import React from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useProdutoDetalhe } from "@/app/hooks/useProdutoDetalhes";
 
 export default function Produto() {
   const params = useParams();
-  const { produto } = params.produto;
+  const nomeProduto = Array.isArray(params.produto)
+    ? params.produto[0]
+    : params.produto;
+
+  const { produto, isLoading, isError } = useProdutoDetalhe(nomeProduto);
+
+  if (isLoading) {
+    return (
+      <div className="container p-5 text-center">
+        <h5 className="text-secondary">Carregando detalhes do produto...</h5>
+      </div>
+    );
+  }
+  if (isError || !produto) {
+    return (
+      <div className="container p-5 text-center">
+        <h5 className="text-danger">Erro ao carregar detalhes do produto.</h5>
+      </div>
+    );
+  }
 
   return (
     <main>
@@ -14,19 +35,24 @@ export default function Produto() {
           <div className="card-body">
             <h5 className="card-title mb-4 fw-light">Detalhes do produto</h5>
 
-            <h5 className="card-title mb-4 fw-bold">Nome produto</h5>
+            <h5 className="card-title mb-4 fw-bold">{produto.nome}</h5>
 
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mb-3">
-              <Image key={""} src={""} alt={""} width={300} height={320} />
+              <Image
+                src={produto.fotos[0].src}
+                alt={produto.fotos[0].titulo}
+                width={300}
+                height={320}
+              />
             </div>
 
+            <p className="card-text fw-medium">Valor: R${produto.preco}</p>
             <p className="card-text fw-medium">
-              Valor: R${Number(2000).toFixed(2)}
+              Descrição: {produto.descricao}{" "}
             </p>
-            <p className="card-text fw-medium">Descrição: </p>
-            <p className="card-text fw-medium">Anunciado por: </p>
-
-            <h5 className="card-title mb-4 fw-bold">Carregando...</h5>
+            <p className="card-text fw-medium">
+              Anunciado por: {produto.usuario_id}{" "}
+            </p>
           </div>
         </div>
       </div>

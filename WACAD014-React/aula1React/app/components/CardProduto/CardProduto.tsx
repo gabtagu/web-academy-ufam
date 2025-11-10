@@ -7,6 +7,7 @@ import {
   useFavoritarProduto,
   useListaFavoritos,
 } from "@/app/hooks/useFavoritos";
+import { useRouter } from "next/navigation";
 
 interface CardProdutoProps {
   produto: Produto;
@@ -17,6 +18,7 @@ export default function CardProduto({
   produto,
   onAdicionarAoCarrinho,
 }: CardProdutoProps) {
+  const router = useRouter();
   const { favoritar, isPending: favoritando } = useFavoritarProduto();
   const { favoritos } = useListaFavoritos();
   const [feedback, setFeedback] = React.useState<{
@@ -24,6 +26,11 @@ export default function CardProduto({
     message: string | null;
   }>({ type: null, message: null });
   const isFavoritado = favoritos?.some((fav) => fav.id === produto.id) ?? false;
+
+  const verDetalhesdoProduto = (nomeProduto: string) => {
+    const rota = `/produto/${encodeURIComponent(nomeProduto)}`;
+    router.push(rota);
+  };
 
   const handleFavoritar = () => {
     if (isFavoritado) {
@@ -87,6 +94,8 @@ export default function CardProduto({
           alt={produto.nome}
           width={300}
           height={320}
+          onClick={() => verDetalhesdoProduto(produto.id)}
+          style={{ cursor: "pointer" }}
         />
 
         <div className="card-body bg-light">
