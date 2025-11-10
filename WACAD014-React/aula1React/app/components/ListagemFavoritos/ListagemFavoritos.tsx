@@ -3,6 +3,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Produto } from "@/app/types/produtos";
 import { RefetchOptions, QueryObserverResult } from "@tanstack/react-query";
+import { useDesfavoritarProduto } from "@/app/hooks/useFavoritos";
 
 interface IListagemFavoritosProps {
   itensFavoritos: Produto[];
@@ -15,8 +16,37 @@ const ListagemFavoritos: React.FC<IListagemFavoritosProps> = ({
   itensFavoritos,
   refecthFavoritos,
 }) => {
+  const { removerFavorito, isRemoving } = useDesfavoritarProduto();
+
+  const [feedback, setFeedback] = React.useState<{
+    type: "success" | "danger" | null;
+    message: string | null;
+  }>({ type: null, message: null });
+
   const handleRemoverFavorito = (produtoId: string) => {
-    console.log(`Remover favorito com ID: ${produtoId}`);
+    removerFavorito(produtoId, {
+      onSuccess: () => {
+        setFeedback({
+          type: "success",
+          message: `Produto ${produtoId} removido com sucesso!`,
+        });
+        window.setTimeout(
+          () => setFeedback({ type: null, message: null }),
+          3000
+        );
+      },
+      onError: (error) => {
+        console.error("Erro ao deletar:", error);
+        setFeedback({
+          type: "danger",
+          message: `Erro ao remover produto ${produtoId}.`,
+        });
+        window.setTimeout(
+          () => setFeedback({ type: null, message: null }),
+          5000
+        );
+      },
+    });
   };
 
   return (
@@ -25,6 +55,12 @@ const ListagemFavoritos: React.FC<IListagemFavoritosProps> = ({
         <h5 className="card-title mb-4 fw-bold">
           Produtos Favoritados ({itensFavoritos.length})
         </h5>
+
+        {feedback.message && (
+          <div className={`alert alert-${feedback.type} small`} role="alert">
+            {feedback.message}
+          </div>
+        )}
 
         <div className="table-responsive">
           <table className="table align-middle">
@@ -52,8 +88,9 @@ const ListagemFavoritos: React.FC<IListagemFavoritosProps> = ({
                       type="button"
                       className="btn btn-outline-danger btn-sm"
                       onClick={() => handleRemoverFavorito(produto.id)}
+                      disabled={isRemoving}
                     >
-                      Remover
+                      {isRemoving ? "Removendo..." : "Remover"}
                     </button>
                   </td>
                 </tr>

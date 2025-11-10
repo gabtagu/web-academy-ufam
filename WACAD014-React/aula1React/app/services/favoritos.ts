@@ -10,3 +10,7 @@ export async function getFavoritos(): Promise<Produto[]> {
   const response = await apiFavoritos.get("/favoritos");
   return response.data;
 }
+
+export async function deleteFavorito(id: string | number): Promise<void> {
+  await apiFavoritos.delete(`/favoritos/${id}`);
+}

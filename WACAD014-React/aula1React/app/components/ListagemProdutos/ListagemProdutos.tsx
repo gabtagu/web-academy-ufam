@@ -19,18 +19,26 @@ export default function ListagemProdutos({
   if (isLoading && !produtos) {
     return <div>Carregando produtos...</div>;
   }
-
-  if (isError) {
-    return <div>Erro ao carregar produtos.</div>;
-  }
-
   if (!produtos || produtos.length === 0) {
+    if (isError) {
+      return (
+        <div className="alert alert-danger">
+          Erro ao carregar produtos. Por favor, recarregue a página.
+        </div>
+      );
+    }
     return <div>Nenhum produto encontrado.</div>;
   }
 
   return (
     <div>
       <h5 className="mb-3">Produtos Disponíveis</h5>
+      {isError && (
+        <div className="alert alert-warning small" role="alert">
+          Aviso: Ocorreu um erro ao tentar atualizar a lista de produtos (Ranek
+          API). Os dados mostrados podem estar desatualizados.
+        </div>
+      )}
 
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
         {produtos.map((produto: Produto) => (

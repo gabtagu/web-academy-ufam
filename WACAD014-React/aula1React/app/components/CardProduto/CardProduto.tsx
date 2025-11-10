@@ -3,7 +3,10 @@ import React from "react";
 import { Produto } from "@/app/types/produtos";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "next/image";
-import { useFavoritarProduto } from "@/app/hooks/useFavoritos";
+import {
+  useFavoritarProduto,
+  useListaFavoritos,
+} from "@/app/hooks/useFavoritos";
 
 interface CardProdutoProps {
   produto: Produto;
@@ -15,12 +18,22 @@ export default function CardProduto({
   onAdicionarAoCarrinho,
 }: CardProdutoProps) {
   const { favoritar, isPending: favoritando } = useFavoritarProduto();
+  const { favoritos } = useListaFavoritos();
   const [feedback, setFeedback] = React.useState<{
     type: "success" | "danger" | null;
     message: string | null;
   }>({ type: null, message: null });
+  const isFavoritado = favoritos?.some((fav) => fav.id === produto.id) ?? false;
 
   const handleFavoritar = () => {
+    if (isFavoritado) {
+      setFeedback({
+        type: "danger",
+        message: "Esse produto já está listado como favorito.",
+      });
+      window.setTimeout(() => setFeedback({ type: null, message: null }), 3000);
+      return;
+    }
     favoritar(produto, {
       onSuccess: () => {
         setFeedback({ type: "success", message: "Adicionado aos favoritos." });
@@ -82,13 +95,15 @@ export default function CardProduto({
 
           <div className="d-flex gap-2">
             <button
-              className="btn btn-outline-danger"
+              className={`btn ${
+                isFavoritado ? "btn-danger" : "btn-outline-danger"
+              }`}
               type="button"
               onClick={handleFavoritar}
-              disabled={favoritando}
-              title="Favoritar"
+              disabled={favoritando || isFavoritado}
+              title={isFavoritado ? "Já favoritado" : "Favoritar"}
             >
-              Favoritar
+              {isFavoritado ? "★ Favoritado" : "♡ Favoritar"}
             </button>
 
             <button
