@@ -112,7 +112,7 @@ export default function CardProduto({
               disabled={favoritando || isFavoritado}
               title={isFavoritado ? "Já favoritado" : "Favoritar"}
             >
-              {isFavoritado ? "★ Favoritado" : "♡ Favoritar"}
+              {isFavoritado ? "Favoritado" : "Favoritar"}
             </button>
 
             <button
