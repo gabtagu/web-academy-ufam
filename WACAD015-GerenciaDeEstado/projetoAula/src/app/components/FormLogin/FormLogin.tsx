@@ -1,7 +1,8 @@
 "use client";
-
+import { useState } from "react";
+import { useAuth } from "../../state/AuthProvider";
 import Link from "next/link";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
   email: string;
@@ -9,13 +10,17 @@ type Inputs = {
 };
 
 export default function FormLogin() {
+  const { login } = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {};
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    login(data.email);
+  };
 
   return (
     <div className="col-12 col-md-8 d-flex justify-content-center align-items-center">

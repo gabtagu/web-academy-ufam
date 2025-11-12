@@ -1,17 +1,19 @@
+import { use } from "react";
 import CardProduto from "../CardProduto/CardProduto";
 import ResumoFavoritos from "../ResumoFavoritos/ResumoFavoritos";
+import { useContext } from "react";
+import {
+  FavoritosContext,
+  useFavoritosContext,
+} from "@/app/state/FavoritosProvider";
 
 interface IListagemProdutos {
   produtos: Produto[];
-  favoritos: Produto[];
-  setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;
 }
 
-export default function ListagemProdutos({
-  produtos,
-  favoritos,
-  setFavoritos,
-}: IListagemProdutos) {
+export default function ListagemProdutos({ produtos }: IListagemProdutos) {
+  const { favoritos, setFavoritos } = useFavoritosContext();
+
   return (
     <div className="row row-cols-1 row-cols-lg-2">
       <div className="col-lg-9">
